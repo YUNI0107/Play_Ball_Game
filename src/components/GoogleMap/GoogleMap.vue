@@ -1,23 +1,34 @@
 <template>
-  <div>
-    <div id="map"></div>
+  <div class="map_out">
+    <div ref="map" class="map"></div>
   </div>
 </template>
 
 <style scoped>
-#map {
+.map_out {
   width: 100%;
   height: 100%;
-  background: magenta;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.content {
+  padding: 5px 10px;
 }
 </style>
 
 <script>
 import { Loader } from "@googlemaps/js-api-loader";
 export default {
+  props: ["fontcolor"],
   data() {
     return {
       map: null,
+      loader: null,
     };
   },
   computed: {
@@ -28,60 +39,92 @@ export default {
   watch: {
     pos() {
       this.getGoogleMap();
+      this.searchPlace();
     },
   },
   methods: {
     getGoogleMap() {
-      const loader = new Loader({
-        apiKey: "AIzaSyABOQsoKBzSYhi1o4kGc7JpK-_ywlC32jM",
-        version: "weekly",
-      });
-      loader.load().then(() => {
-        this.map = new window.google.maps.Map(document.getElementById("map"), {
-          center: this.pos,
-          zoom: 15,
+      this.loader
+        .load()
+        .then(() => {
+          this.map = new window.google.maps.Map(this.$refs.map, {
+            center: this.pos,
+            zoom: 15,
+          });
+          new window.google.maps.Marker({
+            position: this.pos,
+            map: this.map,
+            icon: {
+              url: 'https://i.imgur.com/74NE6Gk.png',
+              scaledSize: new window.google.maps.Size(45, 67),
+            },
+            title: "你的目前位置",
+          });
+
+        })
+        .catch((res) => {
+          console.log(res);
+        });
+    },
+    searchPlace() {
+      this.loader
+        .load()
+        .then(() => {
+          const service = new window.google.maps.places.PlacesService(this.map);
+          service.nearbySearch(
+            { location: this.pos, radius: 500, keyword: "籃球場" },
+            (results, status) => {
+              if (status !== "OK") return;
+              console.log(results);
+              this.createMarkers(results);
+            }
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    createMarkers(places) {
+      this.loader.load().then(() => {
+        places.forEach((place) => {
+          // 建立一個新地標
+          let marker = new window.google.maps.Marker({
+            // 設定地標的座標
+            position: place.geometry.location,
+            map: this.map,
+          });
+
+          let infowindow = new window.google.maps.InfoWindow({
+            // 設定想要顯示的內容
+            content: `
+                  <div class="content">
+                    <h3 class="firstHeading" style="letter-spacing: 2px; line-height: 30px;">${place.name}</h3>
+                    <p>${place.vicinity}</p>
+                    <p style="display: inline-block;">Rank 評分</p>
+                    <h3 style="display: inline-block; color: ${this.fontcolor};">${place.rating}</h3>
+                  </div>
+                `,
+          });
+          marker.addListener("click", () => {
+            // 指定在哪個地圖和地標上開啟訊息視窗
+            infowindow.open(this.map, marker);
+          });
         });
       });
     },
-    // searchPlace() {
-    //   const service = new window.google.maps.places.PlacesService(this.map);
-
-    //   service.nearbySearch(
-    //     { location: this.pos, radius: 500, type: "籃球場" },
-    //     (results, status) => {
-    //       if (status !== "OK") return;
-    //       this.createMarkers(results, this.map);
-    //     }
-    //   );
-    // },
-
-    // createMarkers(places, map) {
-    //   const bounds = new window.google.maps.LatLngBounds();
-
-    //   for (let i = 0, place; (place = places[i]); i++) {
-    //     const image = {
-    //       url: place.icon,
-    //       size: new window.google.maps.Size(71, 71),
-    //       origin: new window.google.maps.Point(0, 0),
-    //       anchor: new window.google.maps.Point(17, 34),
-    //       scaledSize: new window.google.maps.Size(25, 25),
-    //     };
-    //     new window.google.maps.Marker({
-    //       map,
-    //       icon: image,
-    //       title: place.name,
-    //       position: place.geometry.location,
-    //     });
-        
-    //     bounds.extend(place.geometry.location);
-    //   }
-
-    //   map.fitBounds(bounds);
-    // },
   },
   mounted() {
-    this.getGoogleMap();
-    // this.searchPlace();
+    this.loader = new Loader({
+      apiKey: "AIzaSyABOQsoKBzSYhi1o4kGc7JpK-_ywlC32jM",
+      version: "weekly",
+      libraries: ["places"],
+    });
+
+    if (this.pos !== null) {
+      this.getGoogleMap();
+      this.searchPlace();
+    }
   },
 };
 </script>

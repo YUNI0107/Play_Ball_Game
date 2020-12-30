@@ -25,15 +25,15 @@ export default {
             lng: position.coords.longitude,
           };
           this.$store.dispatch('posLocation', pos)
-          this.axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&language=zh-TW&key=AIzaSyABOQsoKBzSYhi1o4kGc7JpK-_ywlC32jM`).then(res=>{
-              let city = res.data.results[0].address_components.filter(item=>{
-                  return item.types[0] == "administrative_area_level_1"
-              })[0].long_name;
-              city = city.replace('台','臺');
-              this.$store.dispatch('getlocation', city)
-          }).catch(err=>{
-              console.log(err);
-          });
+          // this.axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&language=zh-TW&key=AIzaSyABOQsoKBzSYhi1o4kGc7JpK-_ywlC32jM`).then(res=>{
+          //     let city = res.data.results[0].address_components.filter(item=>{
+          //         return item.types[0] == "administrative_area_level_1"
+          //     })[0].long_name;
+          //     city = city.replace('台','臺');
+          //     this.$store.dispatch('getlocation', city)
+          // }).catch(err=>{
+          //     console.log(err);
+          // });
         })
       } else {
         console.log("取得經緯度失敗");

@@ -75,10 +75,7 @@ export default new Vuex.Store({
       },
     ],
     city: "您的位置",
-    pos: {
-      lat: 23.974699687174173,
-      lng: 120.97921972803701,
-    }
+    pos: null,
   },
   mutations: {
     whiteBackChange(state,playload){
