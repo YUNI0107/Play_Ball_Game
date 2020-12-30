@@ -1,0 +1,72 @@
+<div class="open_item">
+    <!-- <transition name="opc" mode="out-in">
+        <div class="blur_back"></div>
+    </transition> -->
+    <div class="open_part">
+        <div class="close" @click="editSportClose">
+            <img src="../../assets/SportOpen/close.png" alt="close">
+        </div>
+        <h3>編輯相揪活動</h3>
+        <div class="hold_inputs">
+            <div class="left">
+                <div class="input_place">
+                    <div class="input_each">
+                        <p>活動名稱<span class="need" :class="{show: name_check}">＊請填寫</span></p>
+                        <input type="text" placeholder="輸入活動名稱" v-model="misson_name" id="misson_name">
+                    </div>
+                    <div class="input_each">
+                        <p>活動成員<span class="need" :class="{show: member_check}">＊請填寫</span></p>
+                        <input type="text" placeholder="輸入相揪成員" v-model="misson_member" id="misson_member">
+                    </div>
+                    <div class="input_each date_each" >
+                        <p>活動日期<span class="need" :class="{show: date_check}">＊請填寫</span></p>
+                        <input type="date" class="date" v-model="misson_date" id="misson_date">
+                    </div>
+                    <div class="input_each time_each" >
+                        <p>活動時間<span class="need" :class="{show: time_check}">＊請填寫</span></p>
+                        <input type="time" class="time" v-model="misson_time" id="misson_time">
+                    </div>
+                    <div class="input_each">
+                        <p>活動地點<span class="need" :class="{show: place_check}">＊請填寫</span></p>
+                        <input placeholder="輸入活動地點" type="text" v-model="misson_place" id="misson_place">
+                    </div>
+                    <div class="input_each">
+                        <p>內容說明</p>
+                        <textarea cols="30" v-model="desc"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+               <div class="ball_choice">
+                   <p>選擇球類<span class="need" :class="{show: ball_check}">＊請選擇球類</span></p>
+                   <div class="balls">
+                       <input type="radio" name="ball" id="football" v-model="ball" value="football">
+                       <label for="football">
+                        <img src="../../assets/SportList/football.png">
+                       </label>
+                       <input type="radio" name="ball" id="basketball" v-model="ball" value="basketball">
+                       <label for="basketball">
+                        <img src="../../assets/SportList/basketball.png">
+                       </label>
+                       <input type="radio" name="ball" id="tennis" v-model="ball" value="tennis">
+                       <label for="tennis">
+                        <img src="../../assets/SportList/tennis.png">
+                       </label>
+                       <input type="radio" name="ball" id="volley" v-model="ball" value="volley">
+                       <label for="volley">
+                        <img src="../../assets/SportList/volley.png">
+                       </label>
+                       <input type="radio" name="ball" id="table" v-model="ball" value="table">
+                       <label for="table">
+                        <img src="../../assets/SportList/table.png">
+                       </label>
+                   </div>
+               </div>
+            </div>
+               <div class="control">
+                   <button class="sub" @click="editSport">送出</button>
+                   <button class="cancel" @click="editSportClose">取消</button>
+               </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,376 @@
+/* 第一部分_固定 */
+.log_place_1{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;;
+    padding: 0px 90px;
+    padding-top: 50px;
+    overflow: hidden;
+}
+
+video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.color_board{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: .7;
+    background-color:#3356BD;
+}
+
+/* 左邊 */
+
+.log_left{
+    position: relative;
+}
+
+.log_left .big_title{
+    width: 600px;
+    margin-bottom: 50px;
+}
+
+.log_left .big_title img{
+    width: 100%;
+}
+
+.log_left .desc{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    color: #fff;
+}
+
+.log_left .desc_each{
+    width: calc(100%/3);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.log_left .desc_each .desc_pic{
+    position: relative;
+    width: 220px;
+    height: 220px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.log_left .desc_each .desc_pic img{
+    width: 105%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+}
+
+.log_left .desc_each .desc_pic:hover{
+    background-color: rgba(255, 255, 255, 0.646);
+}
+
+.log_left .desc_each .desc_pic:hover img{
+    width: 115%;
+}
+
+.log_left .desc_each .desc_text h2{
+    font-size: 22px;
+    letter-spacing: 2px;
+    margin: 10px 0 5px 0;
+}
+
+.log_left .desc_each .desc_text p{
+    font-size: 12px;
+    line-height: 20px;
+}
+
+/* 右邊 */
+
+.log_right{
+   width: 30%;
+   display: flex;
+   justify-content: flex-end;
+}
+
+.log_google{
+    background: #fff;
+    border-radius: 20px;
+    padding: 100px 50px;
+    width: 100%;
+    margin: auto;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.11);
+}
+
+.log_google h1{
+    font-size: 35px;
+    color: #0E084B;
+    margin-bottom: 20px;
+}
+
+
+.log_right .google_desc *{
+    display: inline-block;
+}
+
+.log_right .google_desc{
+    display: flex;
+    align-items: center;
+}
+
+.log_right .google_desc .pic_hold{
+    margin-right: 5px;
+}
+
+.log_right .google_desc .pic{
+    width: 45px;
+    height: 45px;
+}
+
+.log_right .google_desc .pic img{
+    width: 100%;
+}
+
+.log_right .google_desc p{
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.log_right input{
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    margin: 30px 0;
+    padding: 15px 10px;
+    border-radius: 20px;
+    outline: none;
+    border: 1.5px solid #BFBFBF;
+}
+
+.log_right input:focus{
+    border: 2px solid #3356BD;
+}
+
+.log_right input::placeholder{
+    color: #d7d7d7;
+}
+
+.log_right button{
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #F95F53;
+    outline: none;
+    padding: 15px 30px;
+    border-radius: 20px;
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.11);
+    cursor: pointer;
+}
+
+.log_right button:hover{
+    background-color: #f1564b;
+}
+
+/* 第二部分_持續動的小插圖 */
+.log_place_2{
+    display: none;
+}
+
+
+@media only screen and (max-width: 1400px) {
+    .log_left .big_title{
+        width: 500px;
+        margin-bottom: 50px;
+    }
+
+    .log_left .desc_each .desc_pic{
+        width: 170px;
+        height: 170px;
+    }
+
+    .log_left .desc_each .desc_text h2{
+        font-size: 18px;
+    }
+
+    .log_right{
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        margin-left: 20px;
+     }
+     
+     .log_google{
+         background: #fff;
+         border-radius: 20px;
+         padding: 100px 30px;
+         width: 100%;
+         margin: auto;
+         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.11);
+     }
+     
+     .log_google h1{
+         font-size: 30px;
+     }
+}
+
+@media only screen and (max-width: 1070px){
+
+    .log_place_1{
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }
+
+
+    .log_left .big_title{
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+
+    .log_left .desc{
+        display: none;
+    }
+
+    .log_right{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        margin-left: 0px;
+     }
+     
+     .log_google{
+         padding: 100px 50px;
+     }
+
+     .log_right .google_desc{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .log_right .google_desc .pic_hold{
+        margin: 0 0 10px 0;
+    }
+
+    /* 第二部分 */
+
+    .log_place_2{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 10px;
+    }
+    
+    .log_place_2 .desc{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: top;
+    }
+    
+    .log_place_2 .desc_each{
+        box-sizing: border-box;
+        padding: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .log_place_2 .desc_each .desc_pic{
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .log_place_2 .desc_each .desc_pic img{
+        display: block;
+        margin: auto;
+        width: 80%;
+    }
+
+    .log_place_2 .desc_each .desc_text h2{
+        font-size: 22px;
+        letter-spacing: 2px;
+        margin: 20px 0 5px 0;
+    }
+    
+    .log_place_2 .desc_each .desc_text p{
+        font-size: 12px;
+        line-height: 20px;
+    }
+    
+
+}
+
+@media only screen and (max-width: 700px){
+    .log_place_1{
+        padding: 25px 30px;
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }    
+
+    .log_left .big_title{
+        width: 85%;
+        margin-bottom: 25px;
+    }
+
+    .log_right {
+        width: 100%;
+     }
+
+     .log_google{
+        padding: 50px 50px;
+    }
+
+    .log_google h1{
+        font-size: 25px;
+    }
+
+    .log_place_2 .desc{
+        flex-wrap: wrap;
+    }
+
+}
+
+@media only screen and (max-width: 360px){
+    .log_place_1{
+        padding-top: 120px;
+        padding-bottom: 50px;
+    }    
+
+    .log_google{
+        padding: 30px 15px;
+    }
+
+    .log_google h1{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}

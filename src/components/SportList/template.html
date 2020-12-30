@@ -1,0 +1,33 @@
+<div class="sportlist">
+    <div class="list_item" @click="missonOpen" :class="{misson_done :misson.done}">
+        <div class="ball_type">
+            <img v-if="misson.ball == 'tennis'" src="../../assets/SportList/tennis.png" alt="ball">
+            <img v-if="misson.ball == 'table'" src="../../assets/SportList/table.png" alt="ball">
+            <img v-if="misson.ball == 'volley'" src="../../assets/SportList/volley.png" alt="ball">
+            <img v-if="misson.ball == 'football'" src="../../assets/SportList/football.png" alt="ball">
+            <img v-if="misson.ball == 'basketball'" src="../../assets/SportList/basketball.png" alt="ball">
+        </div>
+        <div class="info">
+            <div class="misson_name">{{misson_name_cut}}</div>
+            <div class="misson_date">{{misson.misson_date+"   "+misson.misson_time}}</div>
+        </div>
+        <div class="other">
+            <div class="location">
+                <a href="#">
+                    <img src="../../assets/SportList/map.png" alt="map">
+                </a>
+            </div>
+            <div class="delete" @click.stop="missonDelete">
+                <img src="../../assets/SportList/trash.png" alt="delete">
+            </div>
+        </div>
+    </div>
+    <template v-if="misson.open">
+        <transition name="opc" mode="out-in">
+            <div class="blur_back"></div>
+        </transition>
+    
+        <SportOpen @missonClose="missonClose" @pointsAnimation="pointsAnimation" @missonEdit="missonEdit" :index="index" :misson="misson"/>
+    </template>
+
+</div>

@@ -1,0 +1,445 @@
+.open_item{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.open_part{
+    position: relative;
+    width: 70%;
+    background-color: #ffffff;
+    height: 700px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 5px, 0, 0.096);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 25px 50px;
+    z-index: 200;
+}
+
+
+.blur_back{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(120, 120, 120, 0.468);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close{
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.close img{
+    width: 100%;
+}
+
+.open_part h3{
+    font-size: 25px;
+    color: #0E084B;
+    margin: 10px 0;
+}
+
+.hold_inputs{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.left{
+    flex: 1;
+    display: flex;
+    /* justify-content: center; */
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+.left .input_place{
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.left .input_each{
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+.left .input_each:nth-child(1){
+    margin-top: 0;
+}
+
+.left .input_each p{
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.need{
+    color: #fc4537;
+    padding-left: 10px;
+    font-size: 10px;
+    display: none;
+}
+
+.need.show{
+    display: inline-block;
+}
+
+.left .input_each input{
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #dedede;
+    outline: none;
+}
+
+.left .input_each .date::-webkit-calendar-picker-indicator, .left .input_each .time::-webkit-calendar-picker-indicator{
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+}
+
+.left .date_each, .left .time_each{
+    position: relative;
+}
+
+.left .date_each::after{
+    content: '';
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/AddSport/calendar.png);
+    background-size: cover;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(15%);
+    pointer-events: none;
+}
+
+.left .time_each::after{
+    content: '';
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/AddSport/time.png);
+    background-size: cover;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(15%);
+    pointer-events: none;
+}
+
+.left .input_each input::placeholder{
+    color: #ababab;
+}
+
+.left .input_each input:focus{
+    border: 1px solid #3356BD;
+}
+
+.left .input_each textarea{
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid #BFBFBF;
+    resize: initial;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.left .input_each   textarea:focus{
+    border: 1px solid #3356BD;
+}
+
+.right{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.ball_choice{
+    flex: 1;
+    width: 100%;
+}
+
+.ball_choice p{
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.balls{
+    display: flex;
+}
+
+.balls input[type="radio"] {
+    display: none;
+}
+
+.balls label{
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.balls label:nth-child(2){
+    margin-left: 0;
+}
+
+.balls label img{
+    width: 100%;
+    opacity: .3;
+    transition: .2s;
+}
+
+.balls input[type="radio"]:checked+label img{
+    opacity: 1;
+}
+
+.control{
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.control button{
+    margin: 0 10px;
+    padding: 10px 70px;
+    border-radius: 50px;
+    border: none;
+    color: #ffffff;
+    font-size: 17px;
+    cursor: pointer;
+    outline: none;
+}
+
+.control .sub{
+    background-color: #3356BD;
+}
+
+.control .sub:hover{
+    background-color: #153fbd;
+}
+
+.control .cancel{
+    background-color: #AAAAAA;
+}
+
+.control .cancel:hover{
+    background-color:#7b7b7b;
+}
+
+@media only screen and (max-width: 1400px){
+    .open_part{
+        padding: 50px 30px;
+    }
+
+    .left .input_each p, .ball_choice p{
+        font-size: 15px;
+    }
+
+    .balls label{
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        margin: 0 5px;
+    }
+
+    .control button{
+        margin: 0 10px;
+        padding: 10px 50px;
+    }
+
+}
+
+@media only screen and (max-width: 1070px){
+    .open_part{
+        padding: 30px 50px;
+        width: 80%;
+        height: 780px;
+    }
+
+    .close{
+        width: 50px;
+        height: 50px;
+    }
+
+    .hold_inputs{
+        position: relative;
+        justify-content: space-around;
+        flex-direction: column;
+        padding-top: 0px;
+    }
+
+    .left{
+        order: 2;
+        flex: 1;
+        overflow: scroll;
+        overflow-x: hidden;
+    }
+
+    .left .input_place{
+        width: 100%;
+    }
+
+    .left .input_each{
+        margin: 10px 0;
+    }
+    
+    .left .input_each:nth-child(1){
+        margin-top: 0;
+    }
+    
+    .left .input_each p{
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .left .date_each::after, .left .time_each::after{
+        transform: translateY(10%);
+    }
+
+    .left .input_each textarea{
+        height: 80px;
+        margin-bottom: 55px;
+    }
+
+    .right{
+        order: 1;
+        flex: 0;
+    }
+
+    .balls{
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .ball_choice p{
+        margin-bottom: 10px;
+    }
+    
+    
+    .balls label{
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        margin: 0 10px;
+    }
+
+    .control{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+        margin-bottom: 0;
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+        background-color: #ffffff;
+    }
+
+    .control button{
+        margin: 0 5%;
+        padding: 10px 0px;
+        flex: 1;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    .open_part{
+        padding: 30px 30px;
+        width: 90%;
+        height: 96vh;
+        padding-bottom: 10px;
+    }
+
+    .close{
+        width: 35px;
+        height: 35px;
+        right: -10px;
+        top: -10px;
+    }
+
+    .open_part h3{
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    .hold_inputs{
+        padding-bottom: 5vh;
+    }
+
+    .left .input_each textarea{
+        height: 120px;
+    }
+
+
+    .control button{
+        margin: 0 1%;
+        font-size: 15px;
+        flex: 1;
+    }
+    
+}
+
+@media only screen and (max-width: 360px){
+
+    .hold_inputs{
+        padding-bottom: 2vh;
+    }
+
+    .left .input_each p, .ball_choice p{
+        font-size: 12px;
+    }
+
+    .left .input_each input{
+        padding: 10px 10px;
+    }
+
+    .left .date_each::after{
+        top: 37px;
+    }
+
+    .balls{
+        margin-bottom: 10px;
+    }
+    
+    .balls label{
+        cursor: pointer;
+        margin: 0 5px;
+    }
+
+    
+}

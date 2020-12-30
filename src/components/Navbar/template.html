@@ -1,0 +1,40 @@
+<div class="nav">
+    <div class="nav_left">
+        <div class="ham" @click="hamHandle">
+            <img v-if="!ham_open && !white_back" src="../../assets/NavBar/ham_open.png" alt="ham">
+            <img v-else-if="!ham_open && white_back" src="../../assets/NavBar/ham_open_blue.png" alt="ham">
+            <img v-else src="../../assets/NavBar/ham_close.png" alt="logo">
+        </div>
+        <div class="logo">
+            <img v-if="!white_back" src="../../assets/NavBar/white_logo.png" alt="logo">
+            <img v-else src="../../assets/NavBar/color_logo.png" alt="logo">
+            <router-link to="/"></router-link>
+        </div>
+    </div>
+    <div class="nav_right">
+        <ul class="links" :class="{black: white_back}">
+            <li>
+                <router-link to="/record">相揪紀錄</router-link>
+            </li>
+            <li>
+                <router-link to="/football">足球</router-link>
+            </li>
+            <li>
+                <router-link to="/basketball">籃球</router-link>
+            </li>
+            <li>
+                <router-link to="path">網球</router-link>
+            </li>
+            <li>
+                <router-link to="path">排球</router-link>
+            </li>
+            <li>
+                <router-link to="path">桌球</router-link>
+            </li>
+            <li>
+                <router-link to="path">品牌合作</router-link>
+            </li>
+        </ul>
+    </div>
+    <button @click="logToogle" class="login" :class="login_color">{{login_state? '登出帳號':'登入帳號'}}</button>
+</div>

@@ -1,0 +1,107 @@
+<div class="basketball">
+    <div class="banner_section">
+        <div class="left">
+            <div class="ani">
+                <div class="ani_people">
+                    <img src="../../assets/BasketBall/play_boy.png">
+                </div>
+                <div class="ani_bottom">
+                    <img src="../../assets/BasketBall/bottom.png">
+                </div>
+                <div class="ani_ballpost">
+                    <img src="../../assets/BasketBall/post.png">
+                </div>
+                <div class="white_back">
+                    <img src="../../assets/BasketBall/white_back.png">
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="top_info">
+                <div class="title">
+                    <div class="chi_title">
+                        <img src="../../assets/BasketBall/chi_title.png">
+                    </div>
+                    <div class="eng_title">
+                        <img src="../../assets/BasketBall/eng_title.png">
+                    </div>
+                    <div class="ball_type">
+                        <img src="../../assets/BasketBall/ball.png">
+                    </div>
+                </div>
+                <div class="add_sport">
+                    <button>+ 新增一項籃球相揪活動</button>
+                </div>
+            </div>
+            <div class="bottom_info">
+                <h3>最新體育活動<span v-show="!infoList">{{warn_text}}</span></h3>
+                <transition name="opcnew" mode="out-in">
+                    <SkeletonNews v-show="!infoList" :fail="fail" />
+                </transition>
+                <div class="new_info" v-for="info in infoList" v-show="infoList !== []">
+                    <div class="new_left">
+                        <div class="place">{{info.activityCounty}}</div>
+                        <div class="date">{{info.activityDateBegin}}</div>
+                    </div>
+                    <div class="new_right">
+                        <h1>{{info.activityName}}</h1>
+                        <p>{{info.activityOrganizer}} 活動分類：{{info.activityType}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="news_section">
+        <div class="title">
+            <h2 class="eng_title">News</h2>
+            <p>近期籃球精選新聞</p>
+        </div>
+        <div class="all_news">
+            <div class="new_block" v-for="newitem in newsListUpdate" :key="newitem.title+newitem.publishedAt"
+                @click="openNews(newitem.url)">
+                <div class="top_pic">
+                    <img :src="newitem.urlToImage" alt="新聞圖片" v-if="newitem.urlToImage">
+                </div>
+                <div class="new_content">
+                    <h2>{{newitem.title}}</h2>
+                    <p>{{newitem.description}}</p>
+                </div>
+                <div class="new_bottom">
+                    <p>{{newitem.publishedAt}}<span>{{newitem.author}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="mobile_news">
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(newitem,index) in newsListUpdate">
+                        <div class="new_block" @click="openNews(newitem.url)">
+                            <div class="top_pic">
+                                <img :src="newitem.urlToImage" alt="新聞圖片" v-if="newitem.urlToImage">
+                            </div>
+                            <div class="new_content">
+                                <h2>{{newitem.title}}</h2>
+                                <p>{{newitem.description}}</p>
+                            </div>
+                            <div class="new_bottom">
+                                <p>{{newitem.publishedAt}}<span>{{newitem.author}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <div class="map">
+        <div class="find">
+            <p>點我找找離你最近的球場吧！</p>
+            <span><img src="../../assets/BasketBall/face.png"></span>
+            <span><img src="../../assets/BasketBall/face.png"></span>
+        </div>
+        <GoogleMap />
+    </div>
+    <FooterDown :footcolor="'#F95F53'" />
+</div>

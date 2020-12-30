@@ -1,0 +1,67 @@
+<div class="open_item">
+    <div class="open_part">
+        <div class="close" @click="missonClose">
+            <img src="../../assets/SportOpen/close.png" alt="close">
+        </div>
+        <div class="left">
+            <div class="ball_type">
+                <img v-if="misson.ball == 'tennis'" src="../../assets/SportList/tennis.png" alt="ball">
+                <img v-if="misson.ball == 'table'" src="../../assets/SportList/table.png" alt="ball">
+                <img v-if="misson.ball == 'volley'" src="../../assets/SportList/volley.png" alt="ball">
+                <img v-if="misson.ball == 'football'" src="../../assets/SportList/football.png" alt="ball">
+                <img v-if="misson.ball == 'basketball'" src="../../assets/SportList/basketball.png" alt="ball">
+            </div>
+            <h1 class="misson_name">{{misson.misson_name}}</h1>
+            <button @click="missonDone">
+                <p>標示為已完成</p>
+            </button>
+            <div class="action_part">
+                <div class="calendar">
+                    <div class="pic">
+                        <img src="../../assets/SportOpen/calendar.png" alt="calendar">
+                    </div>
+                    <p>加到行事曆</p>
+                </div>
+                <div class="line">
+                    <div class="pic">
+                        <img src="../../assets/SportOpen/line.png" alt="line">
+                    </div>
+                    <p>Line我的朋友</p>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="info">
+                <h2>活動日期</h2>
+                <p>{{misson.misson_date+"   "+misson.misson_time}}</p>
+            </div>
+            <div class="info">
+                <h2>活動成員</h2>
+                <p>{{misson.misson_member}}</p>
+            </div>
+            <div class="info">
+                <h2>活動地點</h2>
+                <p>{{misson.misson_place}}</p>
+            </div>
+            <div class="info">
+                <h2>內容說明</h2>
+                <p>{{misson.desc}}</p>
+            </div>
+
+        </div>
+        <div class="edit_part">
+            <div class="edit edit_item" @click="missonEdit">
+                <div class="pic">
+                    <img src="../../assets/SportOpen/edit.png" alt="edit">
+                </div>
+                <h3>編輯</h3>
+            </div>
+            <div class="delete edit_item" @click="missonDelete">
+                <div class="pic">
+                    <img src="../../assets/SportOpen/trash.png" alt="delete">
+                </div>
+                <h3>刪除</h3>
+            </div>
+        </div>
+    </div>
+</div>
