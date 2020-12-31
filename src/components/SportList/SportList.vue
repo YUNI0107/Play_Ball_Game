@@ -40,6 +40,9 @@ export default {
         },
         missonEdit(playload){
             this.$emit('missonEdit', playload)
+        },
+        openLink(){
+            window.open(`https://www.google.com/maps/search/?api=1&query=${this.misson.misson_place}`);
         }
     },
     mounted(){

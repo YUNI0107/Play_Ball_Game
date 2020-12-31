@@ -9,13 +9,13 @@
         </div>
         <div class="info">
             <div class="misson_name">{{misson_name_cut}}</div>
-            <div class="misson_date">{{misson.misson_date+"   "+misson.misson_time}}</div>
+            <div class="misson_date">{{misson.misson_date+"   "+ misson.misson_time}}</div>
         </div>
         <div class="other">
             <div class="location">
-                <a href="#">
+                <div @click.stop="openLink">
                     <img src="../../assets/SportList/map.png" alt="map">
-                </a>
+                </div>
             </div>
             <div class="delete" @click.stop="missonDelete">
                 <img src="../../assets/SportList/trash.png" alt="delete">

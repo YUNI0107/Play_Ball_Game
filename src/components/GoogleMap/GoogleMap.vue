@@ -103,6 +103,8 @@ export default {
                     <p>${place.vicinity}</p>
                     <p style="display: inline-block;">Rank 評分</p>
                     <h3 style="display: inline-block; color: ${this.fontcolor};">${place.rating}</h3>
+                    <br>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${place.name}" target="_blank">在 Google 地圖上查看</a>
                   </div>
                 `,
           });
