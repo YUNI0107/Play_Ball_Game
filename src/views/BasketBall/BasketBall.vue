@@ -10,6 +10,7 @@ import "swiper/swiper-bundle.css";
 // import Swiper JS
 // core version + navigation, pagination modules:
 import Swiper, { Navigation, Pagination, Autoplay } from "swiper";
+import { mapState } from 'vuex';
 
 // configure Swiper to use modules
 Swiper.use([Navigation, Pagination, Autoplay]);
@@ -65,6 +66,7 @@ export default {
     pos() {
       return this.$store.state.pos;
     },
+    ...mapState(["login_state"])
   },
   components: {
     FooterDown,

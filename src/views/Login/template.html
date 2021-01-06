@@ -24,7 +24,7 @@
                     </div>
                     <div class="desc_text">
                         <h2>記錄你的所有球聚</h2>
-                        <p>自動串連Google行事曆，<br>設立每個月的揪團目標，相揪地點導航。</p>
+                        <p>在網頁紀錄相揪紀錄，<br>設立每個月的揪團目標，相揪地點導航。</p>
                     </div>
                 </div>
                 <div class="desc_each">
@@ -47,16 +47,18 @@
                             <img src="../../assets/Login/google.png">
                         </div>
                         <div class="pic">
-                            <img src="../../assets/Login/calendar.png">
+                            <img src="../../assets/Login/map.png">
                         </div>
                     </div>
                     <p>
-                        登入您的GOOGLE帳號，<br>開始記錄自己每個月的打球相揪次數吧！
+                        設定自己的暱稱，<br>開始記錄自己每個月的打球相揪次數吧！
                     </p>
                 </div>
-                <input type="text" placeholder="您的信箱或帳戶 Username or Usermail" class="user">
-                <input type="text" placeholder="您的密嗎 Password" class="password">
-                <button @click="checkLogin">Link  連至GOOGLE帳戶</button>
+                <input type="text" placeholder="您的暱稱 Username or Nickname" class="user" v-model.trim="username">
+                <input type="password" :class="{ err: password_err }" placeholder="您的密碼 Password" class="password" v-model.trim="password">
+                <p class="password_err" v-show="password_err">密碼只能是20位以內英文、數字，請重新輸入</p>
+                <button class="btn1" @click="checkLogin">登入帳戶</button>
+                <button class="btn2" @click="createUser">創立帳戶</button>
             </div>
         </div>
     </section>

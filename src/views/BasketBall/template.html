@@ -29,8 +29,8 @@
                         <img src="../../assets/BasketBall/ball.png">
                     </div>
                 </div>
-                <div class="add_sport">
-                    <button @click="addSportToogle">+ 新增一項籃球相揪活動</button>
+                <div class="add_sport" :class="{no_login: !login_state}">
+                    <button @click="addSportToogle">+ 新增一項籃球相揪活動 <span v-if="!login_state">(未登入)</span></button>
                 </div>
             </div>
             <div class="bottom_info">

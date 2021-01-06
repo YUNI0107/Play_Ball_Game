@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user_name: "",
     // Nav樣式判斷
     white_back: false,
     now_white_back: true,
@@ -14,7 +15,7 @@ export default new Vuex.Store({
     login_state: true,
     all_misson:[
       {
-          misson_name: "研究生學弟妹團約學弟妹團約",
+          misson_name: "Sample：研究生學弟妹團約學弟妹團約",
           ball: "volley",
           misson_date: "2020-08-07",
           misson_place: "師大附中室內排球場",
@@ -26,7 +27,7 @@ export default new Vuex.Store({
           done: false,
       },
       {
-          misson_name: "運動中心社團的約",
+          misson_name: "Sample：運動中心社團的約",
           ball: "tennis",
           misson_date: "2020-08-10",
           misson_place: "新生公園網球場",
@@ -38,7 +39,7 @@ export default new Vuex.Store({
           done: true,
       },
       {
-          misson_name: "搶大草皮的位子",
+          misson_name: "Sample：搶大草皮的位子",
           ball: "football",
           misson_date: "2020-08-22",
           misson_place: "華山大草原",
@@ -50,7 +51,7 @@ export default new Vuex.Store({
           done: false,
       },
       {
-          misson_name: "去大學打桌球",
+          misson_name: "Sample：去大學打桌球",
           ball: "table",
           misson_date: "2020-05-07",
           misson_place: "大安桌球教室",
@@ -62,14 +63,14 @@ export default new Vuex.Store({
           done: true,
       },
       {
-          misson_name: "打籃球的約約",
+          misson_name: "Sample：打籃球的約約",
           ball: "basketball",
           misson_date: "2020-08-27",
           misson_place: "錦和運動公園",
           misson_time: "10:00",
           misson_location: "",
           misson_member: "Kinda",
-          desc:"大概7:00要去搶位子",
+          desc:"大概9:00要去搶位子",
           open: false,
           done: false,
       },
@@ -137,6 +138,14 @@ export default new Vuex.Store({
     //其他
     setLocation(state,playload){
       state.city = playload;
+    },
+    //設定新帳號用戶
+    getUser(state){
+      state.user_name = localStorage.getItem('sport_user_name');
+    },
+    // 清除前用戶資料
+    clearAllMisson(state){
+      state.all_misson = [];
     }
   },
   actions: {

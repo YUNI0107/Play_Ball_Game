@@ -5,7 +5,9 @@ import {mapState} from 'vuex';
 export default {
     data(){
         return{
-
+            username: "",
+            password: "",
+            password_err: false,
         }
     },
     computed:{
@@ -17,6 +19,20 @@ export default {
             'login_color',
         ])
     },
+    watch:{
+        password(){
+            const regex = RegExp(/^[a-z0-9_-]{0,20}$/,"g");
+            
+            if(!regex.test(this.password)){
+                this.password_err = true;
+                // this.password = this.password.replace(/[\W]/g,'')
+                console.log(regex.test(this.password));
+            }else{
+                this.password_err = false;
+                console.log(regex.test(this.password));
+            }
+        }
+    },
     components:{
         FooterDown,
         BackTop,
@@ -24,12 +40,49 @@ export default {
     methods:{
         // 檢查GOOGLE帳號是否登入成功，成功跳轉失敗跳提示
         checkLogin(){
-            // 先都成功，之後回來改
-            this.$store.commit('loginStateChange', true)
+            if(this.username !== "" && this.password !== ""){
+                let username = localStorage.getItem('sport_user_name') ;
+                let userpassword = localStorage.getItem('sport_user_password');
+                //  帳號密碼一致
+                if(username == this.username && userpassword == this.password){
+                    this.$store.commit('loginStateChange', true)
+                }else if(username == undefined && userpassword == undefined){
+                    alert('登入失敗！你還沒建立帳戶喔😖😖')
+                }else{
+                    alert('登入失敗！帳戶密碼錯誤😖😖')
+                }
+            }
+            
             if(this.$store.state.login_state == true){
                 this.$router.push({name: 'Record'})
-            }else{
-                alert('登入失敗')
+            }
+        },
+        createUser(){
+            if(this.username !== "" && this.password !== ""){
+                let username = localStorage.getItem('sport_user_name') ;
+                let userpassword = localStorage.getItem('sport_user_password');
+                if(username == undefined && userpassword == undefined){
+                    //設定帳戶密碼
+                    localStorage.setItem('sport_user_name',this.username);
+                    localStorage.setItem('sport_user_password',this.password);
+                    this.$store.commit('getUser');
+                    this.checkLogin();
+                }
+                else if(username !== this.username && userpassword !== this.password){
+                    let confirm_check = confirm('你要覆蓋掉你前面的帳號與資料嗎？');
+                if(confirm_check){
+                    // 清除資料
+                    this.$store.commit('clearAllMisson')
+                    //設定帳戶密碼
+                    localStorage.setItem('sport_user_name',this.username);
+                    localStorage.setItem('sport_user_password',this.password);
+                    this.$store.commit('getUser');
+                    this.checkLogin();
+                }
+                }else{
+                    this.checkLogin();
+                    alert('這個帳號你已經創立過囉！幫您做登錄😇😇')
+            }
             }
         },
         // Nav高度判斷

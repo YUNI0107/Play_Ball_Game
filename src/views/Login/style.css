@@ -158,11 +158,22 @@ video{
     box-sizing: border-box;
     display: block;
     width: 100%;
-    margin: 30px 0;
+    margin: 25px 0 0 0;
     padding: 15px 10px;
     border-radius: 20px;
     outline: none;
     border: 1.5px solid #BFBFBF;
+}
+
+.log_right .password_err{
+    font-size: 12px;
+    text-align: center;
+    color: #F95F53;
+    margin: 15px 0 0 0;
+}
+
+.log_right .err:focus{
+    border: 2px solid #F95F53;
 }
 
 .log_right input:focus{
@@ -176,8 +187,7 @@ video{
 .log_right button{
     display: block;
     width: 100%;
-    margin-top: 30px;
-    background-color: #F95F53;
+    margin-top: 15px;
     outline: none;
     padding: 15px 30px;
     border-radius: 20px;
@@ -190,8 +200,20 @@ video{
     cursor: pointer;
 }
 
-.log_right button:hover{
+.log_right .btn1{
+    background-color: #F95F53;
+}
+
+.log_right .btn2{
+    background-color: #3356BD;
+}
+
+.log_right .btn1:hover{
     background-color: #f1564b;
+}
+
+.log_right .btn2:hover{
+    background-color: #2445a9;
 }
 
 /* 第二部分_持續動的小插圖 */

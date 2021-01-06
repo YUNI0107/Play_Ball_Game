@@ -20,7 +20,6 @@ export default {
   },
   data() {
     return {
-      user_name: "YUNI0107",
       days: 120,
       weather: "",
       weather_type: 1,
@@ -81,7 +80,7 @@ export default {
         },
       ];
     },
-    ...mapState(["all_misson", "city"]),
+    ...mapState(["all_misson", "city","user_name"]),
   },
   watch: {
     city() {
@@ -397,6 +396,7 @@ export default {
       ;
 
     this.aniPeople();
+    this.$store.commit('getUser');
   },
 
   destroyed() {

@@ -130,6 +130,11 @@
     cursor: pointer;
 }
 
+.banner_section .right .add_sport.no_login button{
+    pointer-events: none;
+    filter: grayscale(.8);
+}
+
 .banner_section .right .add_sport button:hover {
     background-color: #ff928a;
 }
