@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="add_sport">
-                    <button>+ 新增一項籃球相揪活動</button>
+                    <button @click="addSportToogle">+ 新增一項籃球相揪活動</button>
                 </div>
             </div>
             <div class="bottom_info">
@@ -96,7 +96,8 @@
         </div>
     </div>
     <div class="map">
-        <GoogleMap :fontcolor="'#F95F53'"/>
+        <!-- <GoogleMap v-if="pos !== null" :fontcolor="'#F95F53'"/>
+        <Loading v-else/> -->
         <div class="find">
             <p>找找離你最近的球場吧！</p>
             <span><img src="../../assets/BasketBall/face.png"></span>
@@ -104,4 +105,12 @@
         </div>
     </div>
     <FooterDown :footcolor="'#F95F53'" />
+
+    <!-- 新增活動區 -->
+    <template v-if="add_open">
+        <transition name="opc" mode="out-in">
+            <div class="blur_back"></div>
+        </transition>
+        <AddSport :ball_type="ball_type" @addSportClose="addSportToogle" />
+    </template>
 </div>

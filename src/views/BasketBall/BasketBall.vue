@@ -2,6 +2,8 @@
 import FooterDown from "../../components/Footer_others/FooterColor";
 import SkeletonNews from "../../components/SkeletonNews/SkeletonNews";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
+import Loading from "../../components/Loading/Loading"
+import AddSport from "../../components/AddSport/AddSport";
 
 // import Swiper styles
 import "swiper/swiper-bundle.css";
@@ -15,11 +17,13 @@ Swiper.use([Navigation, Pagination, Autoplay]);
 export default {
   data() {
     return {
+      ball_type: "basketball",
       infoList: null,
       newsList: [],
       warn_text: "資訊加載中，請稍候",
       fail: false,
       swiper: {},
+      add_open: false,
     };
   },
   computed: {
@@ -57,15 +61,24 @@ export default {
       });
       return list;
     },
+    // 檢查地圖是不是準備好了
+    pos() {
+      return this.$store.state.pos;
+    },
   },
   components: {
     FooterDown,
     SkeletonNews,
     GoogleMap,
+    Loading,
+    AddSport,
   },
   methods: {
     openNews(web) {
       window.open(web);
+    },
+    addSportToogle() {
+      this.add_open = !this.add_open;
     },
   },
   mounted() {

@@ -10,4 +10,4 @@ export default {
 </script>
 
 <template src="./template.html"></template>
-<style src="./style.css"></style>
+<style scoped src="./style.css"></style>

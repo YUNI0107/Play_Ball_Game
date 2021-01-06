@@ -1,5 +1,6 @@
 <script>
 export default {
+  props: ["ball_type"],
   data() {
     return {
       misson_name: "",
@@ -84,6 +85,11 @@ export default {
         this.place_check = false;
     }
   },
+  mounted(){
+    if(this.ball_type){
+      this.ball = this.ball_type;
+    }
+  }
 };
 </script>
 
