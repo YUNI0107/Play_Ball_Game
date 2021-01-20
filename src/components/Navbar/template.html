@@ -13,26 +13,26 @@
     </div>
     <div class="nav_right">
         <ul class="links" :class="{black: white_back}">
-            <li>
+            <li @click="hamClose">
                 <router-link to="/record">相揪紀錄</router-link>
             </li>
-            <li>
+            <li @click="hamClose">
                 <router-link to="/football">足球</router-link>
             </li>
-            <li>
+            <li @click="hamClose">
                 <router-link to="/basketball">籃球</router-link>
             </li>
-            <li>
-                <router-link to="path">網球</router-link>
+            <li @click="hamClose">
+                <router-link to="/tennis">網球</router-link>
             </li>
-            <li>
-                <router-link to="path">排球</router-link>
+            <li @click="hamClose">
+                <router-link to="/volleyball">排球</router-link>
             </li>
-            <li>
-                <router-link to="path">桌球</router-link>
+            <li @click="hamClose">
+                <router-link to="/tabletennis">桌球</router-link>
             </li>
-            <li>
-                <router-link to="path">品牌合作</router-link>
+            <li @click="hamClose">
+                <router-link to="/product">推薦商品</router-link>
             </li>
         </ul>
     </div>

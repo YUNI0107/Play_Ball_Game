@@ -1,4 +1,5 @@
 <script>
+import {mapState} from "vuex";
 export default {
   props: ["ball_type"],
   data() {
@@ -19,6 +20,9 @@ export default {
       time_check: false,
       member_check: false,
     };
+  },
+  computed:{
+    ...mapState(["all_misson"])
   },
   methods: {
     addSportClose() {
@@ -46,6 +50,8 @@ export default {
           done: false,
         };
         this.$store.commit("addSport", misson);
+        console.log(this.all_misson);
+        this.missonLocal();
         this.addSportClose();
       }else{
           this.missing = [];
@@ -76,6 +82,9 @@ export default {
           }
           alert(`您還未填寫${this.missing.join('、')}😖！`)
       }
+    },
+    missonLocal(){
+      localStorage.setItem('sport_missonList', JSON.stringify(this.all_misson));
     },
     resetShow(){
         this.ball_check = false;

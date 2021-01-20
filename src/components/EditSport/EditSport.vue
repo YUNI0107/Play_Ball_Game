@@ -58,6 +58,7 @@ export default {
           done: false,
         };
         this.$store.commit("editSport", [misson,this.editing_misson]);
+        this.missonLocal();
         this.editSportClose();
       }else{
           this.missing = [];
@@ -95,7 +96,10 @@ export default {
         this.name_check = false;
         this.date_check = false;
         this.place_check = false;
-    }
+    },
+    missonLocal(){
+      localStorage.setItem('sport_missonList', JSON.stringify(this.all_misson));
+    },
   },
   mounted(){
     // 初始化v-model資料

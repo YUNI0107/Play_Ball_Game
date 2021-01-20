@@ -3,7 +3,6 @@ import SportOpen from '../../components/SportOpen/SportOpen'
 export default {
     props:[
         "misson",
-        "index"
     ],
     components:{
         SportOpen,
@@ -15,8 +14,8 @@ export default {
     },
     computed:{
         misson_name_cut(){
-            if(this.misson.misson_name.length > 11){
-                return `${this.misson.misson_name.slice(0,10)}...`
+            if(this.misson.misson_name.length > 15){
+                return `${this.misson.misson_name.slice(0,15)}...`
             }else{
                 return this.misson.misson_name
             }

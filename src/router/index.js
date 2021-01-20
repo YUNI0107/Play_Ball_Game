@@ -5,6 +5,10 @@ import Login from '../views/Login/Login.vue'
 import Record from '../views/Record/Record.vue'
 import FootBall from '../views/FootBall/FootBall.vue'
 import BasketBall from '../views/BasketBall/BasketBall.vue'
+import Tennis from '../views/Tennis/Tennis.vue'
+import VolleyBall from '../views/VolleyBall/VolleyBall.vue'
+import TableTennis from '../views/TableTennis/TableTennis.vue'
+import Product from '../views/Product/Product.vue'
 
 Vue.use(VueRouter)
 
@@ -50,7 +54,27 @@ const routes = [
     path: '/basketball',
     name: 'BasketBall',
     component: BasketBall,
-  }
+  },
+  {
+    path: '/tennis',
+    name: 'Tennis',
+    component: Tennis,
+  },
+  {
+    path: '/volleyball',
+    name: 'VolleyBall',
+    component: VolleyBall,
+  },
+  {
+    path: '/tabletennis',
+    name: 'TableTennis',
+    component: TableTennis,
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    component: Product,
+  },
 ]
 
 const router = new VueRouter({

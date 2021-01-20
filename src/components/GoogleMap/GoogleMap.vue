@@ -26,11 +26,12 @@
 <script>
 import { Loader } from "@googlemaps/js-api-loader";
 export default {
-  props: ["fontcolor"],
+  props: ["fontcolor","ball"],
   data() {
     return {
       map: null,
       loader: null,
+      nowMarker: null,
     };
   },
   computed: {
@@ -53,7 +54,7 @@ export default {
             center: this.pos,
             zoom: 15,
           });
-          new window.google.maps.Marker({
+          this.nowMarker = new window.google.maps.Marker({
             position: this.pos,
             map: this.map,
             icon: {
@@ -74,10 +75,12 @@ export default {
         .then(() => {
           const service = new window.google.maps.places.PlacesService(this.map);
           service.nearbySearch(
-            { location: this.pos, radius: 500, keyword: "籃球場" },
+            { location: this.pos, radius: 1000, keyword: this.ball },
             (results, status) => {
+              if(results.length == 0){
+                this.zeroMarker();
+              }
               if (status !== "OK") return;
-              console.log(results);
               this.createMarkers(results);
             }
           );
@@ -117,6 +120,15 @@ export default {
         });
       });
     },
+    zeroMarker(){
+      this.loader.load().then( ()=>{
+        let infowindow = new window.google.maps.InfoWindow({
+          content:"附近沒有適合的球場！"
+        });
+        infowindow.open(this.map, this.nowMarker);
+      }
+      )
+    }
   },
   mounted() {
     this.loader = new Loader({

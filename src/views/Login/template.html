@@ -55,7 +55,7 @@
                     </p>
                 </div>
                 <input type="text" placeholder="您的暱稱 Username or Nickname" class="user" v-model.trim="username">
-                <input type="password" :class="{ err: password_err }" placeholder="您的密碼 Password" class="password" v-model.trim="password">
+                <input type="password" :class="{ err: password_err }" placeholder="您的密碼 Password" class="password" v-model.trim="password" @keypress.enter="checkLogin">
                 <p class="password_err" v-show="password_err">密碼只能是20位以內英文、數字，請重新輸入</p>
                 <button class="btn1" @click="checkLogin">登入帳戶</button>
                 <button class="btn2" @click="createUser">創立帳戶</button>

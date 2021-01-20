@@ -59,14 +59,17 @@ export default {
     running() {
       return [
         {
+          index: 0,
           text: `歡迎${this.user_name}，這是您加入相揪的120天`,
           emoji: "🥰",
         },
         {
+          index: 1,
           text: `今日是${this.date}，外面天氣為${this.weather}`,
           emoji: "⭐️",
         },
         {
+          index: 2,
           text: `${
             this.weather_type == 1
               ? "今天真是好天氣！出太陽暖和和的"

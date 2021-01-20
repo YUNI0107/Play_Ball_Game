@@ -2,15 +2,21 @@
 import FooterDown from "../../components/Footer_others/FooterColor";
 import SkeletonNews from "../../components/SkeletonNews/SkeletonNews";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
-import Loading from "../../components/Loading/Loading"
+import Loading from "../../components/Loading/Loading";
 import AddSport from "../../components/AddSport/AddSport";
+import BackTop from "../../components/BackTop_ball/BackTop"
+
+// import GSAP
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 // import Swiper styles
 import "swiper/swiper-bundle.css";
 // import Swiper JS
 // core version + navigation, pagination modules:
 import Swiper, { Navigation, Pagination, Autoplay } from "swiper";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 // configure Swiper to use modules
 Swiper.use([Navigation, Pagination, Autoplay]);
@@ -25,6 +31,10 @@ export default {
       fail: false,
       swiper: {},
       add_open: false,
+      bg_tl: null,
+      // 檢查前面寬度
+      old_width: null,
+      now_width: null,
     };
   },
   computed: {
@@ -66,7 +76,7 @@ export default {
     pos() {
       return this.$store.state.pos;
     },
-    ...mapState(["login_state"])
+    ...mapState(["login_state"]),
   },
   components: {
     FooterDown,
@@ -74,6 +84,7 @@ export default {
     GoogleMap,
     Loading,
     AddSport,
+    BackTop,
   },
   methods: {
     openNews(web) {
@@ -81,6 +92,58 @@ export default {
     },
     addSportToogle() {
       this.add_open = !this.add_open;
+    },
+    peopleGsap() {
+      this.old_width = window.innerWidth;
+      
+      //  打籃球的人，動態效果
+
+      this.bg_tl
+        .from(".white_back", {
+          duration: 1,
+          x: -1000,
+          ease: "circ.out",
+        })
+        .from(
+          ".ani_ballpost",
+          {
+            duration: 0.5,
+            x: -800,
+            ease: "circ.out",
+          },
+          0.5
+        )
+        .from(
+          ".ani_people",
+          {
+            duration: 0.5,
+            rotate: -50,
+            x: -1000,
+            ease: "circ.out",
+          },
+          0.2
+        )
+        .from(
+          ".ball_type",
+          {
+            duration: 0.5,
+            scale: 0,
+            ease: "back.out(2)",
+          },
+          0.5
+        );
+    },
+    resizeGsap(){
+      this.now_width = window.innerWidth;
+      if((this.now_width  < 1070 && this.old_width  > 1070 && (this.old_width - this.now_width) > 0) 
+      || (this.now_width  > 1070 && this.old_width  < 1070 && (this.old_width - this.now_width) < 0)){
+        console.log('change');
+        this.bg_tl.set(".ani_ballpost", {clearProps:"transform"}); 
+        this.bg_tl.set(".ani_people", {clearProps:"transform"}); 
+        this.bg_tl.set(".white_back", {clearProps:"transform"}); 
+        this.bg_tl.set(".ball_type", {clearProps:"scale"}); 
+        this.peopleGsap();
+      }
     },
   },
   mounted() {
@@ -121,7 +184,6 @@ export default {
     // const cors = 'https://cors-anywhere.herokuapp.com/';
     // this.axios.get(cors+"https://isports.sa.gov.tw/Api/Rest/V1/Activity.svc/GetActivityList?activityKind=1&paging=false").then(res=>{
     //   this.infoList = [];
-    //   console.log(res);
     //   res.data.data.forEach((item,index)=>{
     //     if(index < 3) this.infoList.push(item);
     //   })
@@ -130,7 +192,71 @@ export default {
     //   this.warn_text = "資料加載失敗，非常抱歉😥";
     //   this.fail = true;
     // });
+    this.bg_tl = gsap.timeline();
+    this.peopleGsap();
+    // 判斷是否重新更新大小
+    window.addEventListener("resize", this.resizeGsap);
+
+    ScrollTrigger.matchMedia({
+      "(min-width: 1070px)": function(){
+        let tl = gsap.timeline({
+          scrollTrigger:{
+            trigger: ".banner_section",
+            // toggleActions: "start pause reverse start",
+            // markers: true,
+            start: `${window.innerHeight / 2}px ${window.innerHeight / 2}px`,
+            end: `bottom ${window.innerHeight / 2}px`,
+            scrub: true,
+            pin: true,
+          },
+        })
+    
+        tl.to("#ball",{
+          y: 350,
+          repeat: 3,
+          yoyo: true,
+        })
+        .to('#body',{
+          x: -10,
+          rotate: 5,
+          transformOrigin:"0% 50%",
+          repeat: 3,
+          yoyo: true,
+        }, 0)
+        .to('#floor_ball',{
+          scale: 0.5,
+          transformOrigin:"50% 50%",
+          repeat: 3,
+          yoyo: true,
+        },0)
+        .to("#head",{
+          x: 15,
+          y: 25,
+          scaleY: 0.5,
+          transformOrigin:"0% 50%",
+          repeat: 3,
+          yoyo: true,
+        },0)
+        .to("#floor_l",{
+          y: 25,
+          scale: 0.6,
+          transformOrigin:"50% 50%",
+          repeat: 3,
+          yoyo: true,
+        },0)
+        .to("#floor_r",{
+          x: -15,
+          y: 40,
+          transformOrigin:"50% 50%",
+          repeat: 3,
+          yoyo: true,
+        },0)
+      }
+    })
   },
+  destroyed(){
+        window.removeEventListener('resize', this.resizeGsap)
+    }
 };
 
 // APIId：

@@ -1,0 +1,69 @@
+<div class="product">
+    <div class="recommend_product">
+        <h1 class="title">推薦<span class="ball">{{chineseBall}}</span>相關品牌
+            <span v-if="login_state">給喜歡此球類運動的你</span>
+            <span v-if="!login_state">給未登入的你</span>
+            </h1>
+        <div class="product_section">
+            <div class="left">
+                <div class="data_block">
+                    <div class="info">
+                        <div class="logo"><img src="@/assets/NavBar/color_logo.png"></div>
+                        <h3>{{show_text}}</h3>
+                    </div>
+                </div>
+                <div class="data_show">
+                    <div class="balls" v-for="(ballitem,index) in userBallList">
+                        <div class="ball_img" >
+                            <img :src="imgrender(`Product/${ballitem.ball}.png`)">
+                        </div>
+                        <p class="ball_name">{{ballitem.chi_ball}}</p>
+                        <p class="ball_num"><span class="mobile_none">相揪</span><span class="num">{{ballitem.num}}</span>次</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="item in recommendList">
+                            <div class="brand_product" >
+                                <div class="top">
+                                    <img :src="imgrender(item.image)">
+                                </div>
+                                <div class="bottom">
+                                    <div class="logo">
+                                        <img :src="imgrender(item.logo)">
+                                    </div>
+                                    <div class="products">
+                                        <div class="item" v-for="product in item.products">
+                                            <div class="item_img">
+                                                <a target="_blank" :href="product.link">
+                                                    <img :src="imgrender(product.image)">
+                                                </a>
+                                            </div>
+                                            <p>{{product.price}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="brands">
+        <h1 class="title">Brand<span>合作品牌</span></h1>
+        <div class="logos">
+            <div class="logo" v-for="item in logo_list">
+                <a :href="item.web" target="_blank">
+                    <img :src="item.image">
+                </a>
+            </div>
+        </div>
+    </div>
+    <BackTop/>
+    <FooterDown/>
+</div>

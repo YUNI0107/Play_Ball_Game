@@ -534,7 +534,7 @@
                 </div>
                 <div class="talk_bar">
                     <transition-group name="run" tag="div">
-                        <p v-for="(run,index) in running" v-if="text_index == index" :key="index">
+                        <p v-for="(run) in running" v-if="text_index == run.index" :key="run.index">
                             {{run.text}}<span>{{run.emoji}}</span></p>
                     </transition-group>
                 </div>
@@ -551,13 +551,16 @@
                     </li>
                     <li class="list_each">
                         <div class="icon">
-                            <img src="../../assets/Record/icon_calendar.png" alt="calendar">
+                            <a href="https://workspace.google.com/intl/zh-TW/products/calendar/" target="_blank"> <img src="../../assets/Record/icon_calendar.png" alt="calendar"></a>
+                           
                         </div>
                         <p>Google行事曆</p>
                     </li>
                     <li class="list_each">
                         <div class="icon">
+                          <router-link to="/product">
                             <img src="../../assets/Record/icon_product.png" alt="product">
+                          </router-link>
                         </div>
                         <p>推薦專屬商品</p>
                     </li>
@@ -589,7 +592,7 @@
                 <div class="misson_section">
                     <transition-group name="list-change" tag="div">
                         <SportList v-for="(item,index) in missonshowList" :key="item.misson_name + item.misson_time"
-                            :misson="item" :index="index" class="fade-item" @pointsAnimation="allAnimation"
+                            :misson="item" class="fade-item" @pointsAnimation="allAnimation"
                             @missonEdit="missonEdit" />
                     </transition-group>
                     <div class="no_misson" :class="{show: noMisson}">
