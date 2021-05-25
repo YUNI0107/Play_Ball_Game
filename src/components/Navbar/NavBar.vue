@@ -113,6 +113,17 @@ export default {
     });
     // 高度變色
     window.addEventListener("scroll", this.navHover);
+    let  mql = window.matchMedia('(max-width: 1070px)');
+    let vue_this = this;
+    mql.addEventListener('change', (e)=>{
+      if(e.matches){
+        console.log('a');
+        vue_this.$refs.nav_right.classList.add("none");
+      }else{
+        console.log('r');
+        vue_this.$refs.nav_right.classList.remove("none");
+    }
+    });
   },
 };
 </script>
