@@ -6,9 +6,10 @@
             <img v-else src="../../assets/NavBar/ham_close.png" alt="logo">
         </div>
         <div class="logo">
+            <router-link to="/">
             <img v-if="!white_back" src="../../assets/NavBar/white_logo.png" alt="logo">
             <img v-else src="../../assets/NavBar/color_logo.png" alt="logo">
-            <router-link to="/"></router-link>
+           </router-link>
         </div>
     </div>
     <div class="nav_right" ref="nav_right">
@@ -35,6 +36,11 @@
                 <router-link to="/product">推薦商品</router-link>
             </li>
         </ul>
+        <div class="logo">
+            <router-link to="/">
+            <img  src="../../assets/NavBar/color_logo.png" alt="logo">
+            </router-link>
+        </div>
     </div>
     <button @click="logToogle" class="login" :class="login_color">{{login_state? '登出帳號':'登入帳號'}}</button>
 </div>
