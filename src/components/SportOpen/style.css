@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     z-index: 200;
-    padding: 30px 0;
+    padding: 40px 15px;
 }
 
 .open_part{
@@ -44,6 +44,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 0 15px;
 }
 
 .left .ball_type{
@@ -198,12 +199,17 @@
     .open_part{
         flex-direction: column;
         padding: 50px 50px;
-        width: 80%;
+        max-width: 700px;
+        width: 100%;
     }
 
     .close{
         width: 50px;
         height: 50px;
+    }
+
+    .left{
+        padding: 0;
     }
 
     .left .ball_type{
@@ -272,10 +278,11 @@
 }
 
 @media only screen and (max-width: 700px){
+
     .open_part{
         padding: 30px 30px;
-        width: 90%;
-        height: 90vh;
+        width: 100%;
+        height: 100%;
     }
 
     .close{

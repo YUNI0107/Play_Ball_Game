@@ -3,6 +3,7 @@
     <video
       src="../../assets/GoogleMap/ball_video.mp4"
       autoplay
+      playsinline="playsinline"
       loop
       muted
     ></video>
