@@ -68,7 +68,7 @@ export default {
                     this.$store.commit('getUser');
                     this.checkLogin();
                 }
-                else if(username !== this.username && userpassword !== this.password){
+                else if(username !== this.username || userpassword !== this.password){
                     let confirm_check = confirm('你要覆蓋掉你前面的帳號與資料嗎？');
                 if(confirm_check){
                     // 清除資料
@@ -117,6 +117,9 @@ export default {
         this.$store.state.white_back= false;
         this.$store.state.now_white_back= false;
         window.addEventListener('scroll', this.navScroll)
+    },
+    created(){
+    document.title = "登入 - 全民來相揪"
     },
     destroyed(){
         window.removeEventListener('scroll', this.navScroll)

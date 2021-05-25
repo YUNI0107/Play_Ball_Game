@@ -203,11 +203,17 @@
 .brands{
     width: 100%;
     padding: 0 90px;
+    margin-top: 50px;
 }
 
 .brands .title{
     color: #3356BD;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.brands .title span{
+    font-size: 18px;
+    margin-left: 10px;
 }
 
 .brands .title .ball{
@@ -219,7 +225,7 @@
 .brands .logos{
     display: flex;
     flex-wrap: wrap;
-    margin: 50px 0;
+    margin: 20px 0;
 }
 
 .brands .logos .logo{

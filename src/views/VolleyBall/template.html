@@ -279,13 +279,13 @@
     <div class="news_section">
         <div class="title">
             <h2 class="eng_title">News</h2>
-            <p>近期排球精選新聞</p>
+            <p>近期球類精選新聞</p>
         </div>
         <div class="all_news">
             <div class="new_block" v-for="newitem in newsListUpdate" :key="newitem.title+newitem.publishedAt"
                 @click="openNews(newitem.url)">
                 <div class="top_pic">
-                    <img :src="newitem.urlToImage" alt="新聞圖片" v-if="newitem.urlToImage">
+                    <img :src="newitem.urlToImage" alt="新聞圖片" v-if="newitem.urlToImage" referrerPolicy="no-referrer" @error="imageDisappear($event)">
                 </div>
                 <div class="new_content">
                     <h2>{{newitem.title}}</h2>
@@ -322,8 +322,13 @@
     </div>
    
     <div class="map">
+       <!-- 如有使用Google Map API 服務，金鑰應放置於後台 -->
         <!-- <GoogleMap v-if="pos !== null" :fontcolor="'#F95F53'" :ball="'排球場'"/>
         <Loading v-else/> -->
+        <DemoMap class="demo"/>
+        <div class="tips">
+          <p>靜態網頁 - Google Map Demo</p>
+        </div>
         <div class="find">
             <p>找找離你最近的球場吧！</p>
             <span><img src="../../assets/BasketBall/face.png"></span>

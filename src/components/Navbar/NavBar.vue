@@ -53,10 +53,10 @@ export default {
     hamClose() {
       let show_back = document.querySelector(".nav_right");
       let ham = document.querySelector(".ham");
-
-       ham.classList.add("ham_change");
-        this.$store.commit("hamOpenChange", false);
-        show_back.classList.remove("open");
+      ham.classList.add("ham_change");
+      this.$store.commit("hamOpenChange", false);
+      show_back.classList.remove("open");
+      this.logoShow();
     },
     logoShow() {
       let logo = document.querySelector(".logo");

@@ -5,6 +5,7 @@ import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import Loading from "../../components/Loading/Loading";
 import AddSport from "../../components/AddSport/AddSport";
 import BackTop from "../../components/BackTop_ball/BackTop"
+import DemoMap from "../../components/DemoMap/DemoMap"
 
 // import GSAP
 import { gsap } from "gsap";
@@ -40,36 +41,38 @@ export default {
   computed: {
     newsListUpdate() {
       let list = [];
-      this.newsList.map((item) => {
-        // 處理多餘的字
-        item.title =
-          item.title.length > 25
-            ? item.title.substr(0, 25) + "..."
-            : item.title;
-        item.description =
-          item.description.length > 40
-            ? item.description.substr(0, 40) + "..."
-            : item.description;
-        item.author =
-          item.author.length > 10
-            ? item.author.substr(0, 15) + "..."
-            : item.author;
-        //處理怪怪英文
-        let indexT = item.publishedAt.indexOf("T");
-        item.publishedAt =
-          item.publishedAt.substring(0, indexT) +
-          " " +
-          item.publishedAt.substring(indexT + 1);
-        let indexZ = item.publishedAt.indexOf("Z");
-        item.publishedAt =
-          item.publishedAt.substring(0, indexZ) +
-          item.publishedAt.substring(indexZ + 1);
-        item.publishedAt = item.publishedAt.substring(
-          0,
-          item.publishedAt.length - 3
-        );
-        list.push(item);
-      });
+      if(this.newsList !== []){
+        this.newsList.map((item) => {
+          // 處理多餘的字
+          item.title =
+            item.title.length > 25
+              ? item.title.substr(0, 25) + "..."
+              : item.title;
+          item.description =
+            item.description.length > 40
+              ? item.description.substr(0, 40) + "..."
+              : item.description;
+          item.author =
+            item.author.length > 10
+              ? item.author.substr(0, 15) + "..."
+              : item.author;
+          //處理怪怪英文
+          let indexT = item.publishedAt.indexOf("T");
+          item.publishedAt =
+            item.publishedAt.substring(0, indexT) +
+            " " +
+            item.publishedAt.substring(indexT + 1);
+          let indexZ = item.publishedAt.indexOf("Z");
+          item.publishedAt =
+            item.publishedAt.substring(0, indexZ) +
+            item.publishedAt.substring(indexZ + 1);
+          item.publishedAt = item.publishedAt.substring(
+            0,
+            item.publishedAt.length - 3
+          );
+          list.push(item);
+        });
+      }
       return list;
     },
     // 檢查地圖是不是準備好了
@@ -85,6 +88,7 @@ export default {
     Loading,
     AddSport,
     BackTop,
+    DemoMap,
   },
   methods: {
     openNews(web) {
@@ -92,6 +96,9 @@ export default {
     },
     addSportToogle() {
       this.add_open = !this.add_open;
+    },
+    imageDisappear(e){
+      e.target.style.display = 'none';
     },
     peopleGsap() {
       this.old_width = window.innerWidth;
@@ -154,7 +161,7 @@ export default {
     // 抓精選新聞 NewsAPI
     this.axios
       .get(
-        'https://newsapi.org/v2/everything?q="排球"&language=zh&apiKey=0cfedf3ca1f2486bbbc0c57d7e9639cf'
+        'https://newsapi.org/v2/everything?q="球類"&language=zh&apiKey=0cfedf3ca1f2486bbbc0c57d7e9639cf'
       )
       .then((res) => {
         res.data.articles.forEach((item, index) => {
@@ -180,17 +187,17 @@ export default {
       });
 
     // 即時新聞 之後開
-    // const cors = 'https://cors-anywhere.herokuapp.com/';
-    // this.axios.get(cors+"https://isports.sa.gov.tw/Api/Rest/V1/Activity.svc/GetActivityList?activityKind=1&paging=false").then(res=>{
-    //   this.infoList = [];
-    //   res.data.data.forEach((item,index)=>{
-    //     if(index < 3) this.infoList.push(item);
-    //   })
-    // }).catch(err=> {
-    //   console.log(err);
-    //   this.warn_text = "資料加載失敗，非常抱歉😥";
-    //   this.fail = true;
-    // });
+    const cors = 'https://cors-anywhere.herokuapp.com/';
+    this.axios.get(cors+"https://isports.sa.gov.tw/Api/Rest/V1/Activity.svc/GetActivityList?activityKind=1&paging=false").then(res=>{
+      this.infoList = [];
+      res.data.data.forEach((item,index)=>{
+        if(index < 3) this.infoList.push(item);
+      })
+    }).catch(err=> {
+      console.log(err);
+      this.warn_text = "資料加載失敗，非常抱歉😥";
+      this.fail = true;
+    });
     this.bg_tl = gsap.timeline();
     this.peopleGsap();
     // 判斷是否重新更新大小
@@ -275,15 +282,15 @@ export default {
       
     })
   },
+  created(){
+    document.title = "排球 - 全民來相揪"
+  },
   destroyed(){
         window.removeEventListener('resize', this.resizeGsap)
+        ScrollTrigger.clearMatchMedia("(min-width: 1070px)") ;
     }
 };
 
-// APIId：
-// 16
-// APIKey：
-// nt25gwi2z2g6sgzl
 </script>
 
 <template src="./template.html"></template>

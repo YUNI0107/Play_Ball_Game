@@ -80,6 +80,8 @@ export default {
           web: "https://www.nittaku.com/",
         },
       ],
+      x: null,
+      y: null,
     };
   },
   computed: {
@@ -266,16 +268,16 @@ export default {
     })
 
     // 判斷是否重畫
-    let x = window.matchMedia("(max-width: 1400px) and (min-width: 450px)");
-    this.myReDraw1400(x); // Call listener function at run time
-    x.addListener(this.myReDraw1400); // Attach listener function on state changes
+    this.x = window.matchMedia("(max-width: 1400px) and (min-width: 450px)");
+    this.myReDraw1400(this.x); // Call listener function at run time
+    this.x.addListener(this.myReDraw1400); // Attach listener function on state changes
 
-    let y = window.matchMedia("(max-width: 450px)");
-    this.myReDraw450(y);
-    y.addListener(this.myReDraw450); // Attach listener function on state changes
+    this.y = window.matchMedia("(max-width: 450px)");
+    this.myReDraw450(this.y);
+    this.y.addListener(this.myReDraw450); // Attach listener function on state changes
 
     // 抓到推薦商品資料
-    this.axios.get("/json/recommend.json").then((res) => {
+    this.axios.get("json/recommend.json").then((res) => {
       this.recommendList = res.data[this.userBall];
       this.$nextTick(() => {
         this.swiper = new Swiper(".swiper-container", {
@@ -296,9 +298,14 @@ export default {
       });
     });
   },
+  created(){
+    document.title = "推薦商品 - 全民來相揪"
+  },
   destroyed(){
     window.removeEventListener('resize',this.myReDraw1400)
     window.removeEventListener('resize',this.myReDraw450)
+    this.x.removeListener(this.myReDraw1400)
+    this.y.removeListener(this.myReDraw450)
   }
 };
 </script>

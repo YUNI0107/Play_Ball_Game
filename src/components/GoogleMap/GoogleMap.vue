@@ -132,7 +132,7 @@ export default {
   },
   mounted() {
     this.loader = new Loader({
-      apiKey: "AIzaSyABOQsoKBzSYhi1o4kGc7JpK-_ywlC32jM",
+      apiKey: "放置Google金鑰",
       version: "weekly",
       libraries: ["places"],
     });

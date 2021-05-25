@@ -25,7 +25,10 @@ export default {
             lng: position.coords.longitude,
           };
           this.$store.dispatch('posLocation', pos)
-          // this.axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&language=zh-TW&key=AIzaSyABOQsoKBzSYhi1o4kGc7JpK-_ywlC32jM`).then(res=>{
+
+          // 取得位置
+          // 如有使用Google Map API 服務，金鑰應放置於後台
+          // this.axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.lat},${pos.lng}&language=zh-TW&key=你的google金鑰`).then(res=>{
           //     let city = res.data.results[0].address_components.filter(item=>{
           //         return item.types[0] == "administrative_area_level_1"
           //     })[0].long_name;

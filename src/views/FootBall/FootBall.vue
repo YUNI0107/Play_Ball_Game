@@ -5,6 +5,7 @@ import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import Loading from "../../components/Loading/Loading";
 import AddSport from "../../components/AddSport/AddSport";
 import BackTop from "../../components/BackTop_ball/BackTop"
+import DemoMap from "../../components/DemoMap/DemoMap"
 
 // import GSAP
 import { gsap } from "gsap";
@@ -85,10 +86,14 @@ export default {
     Loading,
     AddSport,
     BackTop,
+    DemoMap,
   },
   methods: {
     openNews(web) {
       window.open(web);
+    },
+    imageDisappear(e){
+      e.target.style.display = 'none';
     },
     addSportToogle() {
       this.add_open = !this.add_open;
@@ -178,20 +183,22 @@ export default {
             },
           });
         });
-      });
+      }).catch(err=>{
+        console.log(err.response);
+      })
 
     // 即時新聞 之後開
-    // const cors = 'https://cors-anywhere.herokuapp.com/';
-    // this.axios.get(cors+"https://isports.sa.gov.tw/Api/Rest/V1/Activity.svc/GetActivityList?activityKind=1&paging=false").then(res=>{
-    //   this.infoList = [];
-    //   res.data.data.forEach((item,index)=>{
-    //     if(index < 3) this.infoList.push(item);
-    //   })
-    // }).catch(err=> {
-    //   console.log(err);
-    //   this.warn_text = "資料加載失敗，非常抱歉😥";
-    //   this.fail = true;
-    // });
+    const cors = 'https://cors-anywhere.herokuapp.com/';
+    this.axios.get(cors+"https://isports.sa.gov.tw/Api/Rest/V1/Activity.svc/GetActivityList?activityKind=1&paging=false").then(res=>{
+      this.infoList = [];
+      res.data.data.forEach((item,index)=>{
+        if(index < 3) this.infoList.push(item);
+      })
+    }).catch(err=> {
+      console.log(err);
+      this.warn_text = "資料加載失敗，非常抱歉😥";
+      this.fail = true;
+    });
     this.bg_tl = gsap.timeline();
     this.peopleGsap();
     // 判斷是否重新更新大小
@@ -308,15 +315,15 @@ export default {
       
     })
   },
+  created(){
+    document.title = "足球 - 全民來相揪"
+  },
   destroyed(){
         window.removeEventListener('resize', this.resizeGsap)
+        ScrollTrigger.clearMatchMedia("(min-width: 1070px)") ;
     }
 };
 
-// APIId：
-// 16
-// APIKey：
-// nt25gwi2z2g6sgzl
 </script>
 
 <template src="./template.html"></template>

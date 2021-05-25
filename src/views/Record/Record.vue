@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      days: 120,
+      days: 1,
       weather: "",
       weather_type: 1,
       weather_short: "讀取天氣",
@@ -60,7 +60,7 @@ export default {
       return [
         {
           index: 0,
-          text: `歡迎${this.user_name}，這是您加入相揪的120天`,
+          text: `歡迎${this.user_name}，這是您加入相揪的${this.days}天`,
           emoji: "🥰",
         },
         {
@@ -359,7 +359,7 @@ export default {
 
     //  如果不是初始頁面
     if (this.city !== "您的位置") {
-      // this.getWeather();
+      this.getWeather();
     }
 
     // 跑馬燈文字
@@ -401,7 +401,9 @@ export default {
     this.aniPeople();
     this.$store.commit('getUser');
   },
-
+  created(){
+    document.title = "相揪紀錄 - 全民來相揪"
+  },
   destroyed() {
     // 退場動畫
     tl.to(".back_title", {
