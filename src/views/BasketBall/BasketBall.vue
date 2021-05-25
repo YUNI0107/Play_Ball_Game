@@ -4,8 +4,8 @@ import SkeletonNews from "../../components/SkeletonNews/SkeletonNews";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import Loading from "../../components/Loading/Loading";
 import AddSport from "../../components/AddSport/AddSport";
-import BackTop from "../../components/BackTop_ball/BackTop"
-import DemoMap from "../../components/DemoMap/DemoMap"
+import BackTop from "../../components/BackTop_ball/BackTop";
+import DemoMap from "../../components/DemoMap/DemoMap";
 
 // import GSAP
 import { gsap } from "gsap";
@@ -86,7 +86,7 @@ export default {
     Loading,
     AddSport,
     BackTop,
-    DemoMap
+    DemoMap,
   },
   methods: {
     openNews(web) {
@@ -95,12 +95,12 @@ export default {
     addSportToogle() {
       this.add_open = !this.add_open;
     },
-    imageDisappear(e){
-      e.target.style.display = 'none';
+    imageDisappear(e) {
+      e.target.style.display = "none";
     },
     peopleGsap() {
       this.old_width = window.innerWidth;
-      
+
       //  打籃球的人，動態效果
 
       this.bg_tl
@@ -138,15 +138,21 @@ export default {
           0.5
         );
     },
-    resizeGsap(){
+    resizeGsap() {
       this.now_width = window.innerWidth;
-      if((this.now_width  < 1070 && this.old_width  > 1070 && (this.old_width - this.now_width) > 0) 
-      || (this.now_width  > 1070 && this.old_width  < 1070 && (this.old_width - this.now_width) < 0)){
-        console.log('change');
-        this.bg_tl.set(".ani_ballpost", {clearProps:"transform"}); 
-        this.bg_tl.set(".ani_people", {clearProps:"transform"}); 
-        this.bg_tl.set(".white_back", {clearProps:"transform"}); 
-        this.bg_tl.set(".ball_type", {clearProps:"scale"}); 
+      if (
+        (this.now_width < 1070 &&
+          this.old_width > 1070 &&
+          this.old_width - this.now_width > 0) ||
+        (this.now_width > 1070 &&
+          this.old_width < 1070 &&
+          this.old_width - this.now_width < 0)
+      ) {
+        console.log("change");
+        this.bg_tl.set(".ani_ballpost", { clearProps: "transform" });
+        this.bg_tl.set(".ani_people", { clearProps: "transform" });
+        this.bg_tl.set(".white_back", { clearProps: "transform" });
+        this.bg_tl.set(".ball_type", { clearProps: "scale" });
         this.peopleGsap();
       }
     },
@@ -158,11 +164,13 @@ export default {
     this.$store.commit("loginColorChange", "white");
 
     // 抓精選新聞 NewsAPI
+    // https://newsapi.org/v2/everything?q="要搜尋的球類"&language=zh&apiKey="我的APIKEY"
     this.axios
       .get(
-        'https://newsapi.org/v2/everything?q="籃球"&language=zh&apiKey=0cfedf3ca1f2486bbbc0c57d7e9639cf'
+        'basketball.json'
       )
       .then((res) => {
+        console.log( JSON.stringify(res.data));
         res.data.articles.forEach((item, index) => {
           if (index < 6) this.newsList.push(item);
         });
@@ -185,27 +193,35 @@ export default {
         });
       });
 
+    
+
     // 即時新聞 之後開
-    const cors = 'https://cors-anywhere.herokuapp.com/';
-    this.axios.get(cors+"https://isports.sa.gov.tw/Api/Rest/V1/Activity.svc/GetActivityList?activityKind=1&paging=false").then(res=>{
-      this.infoList = [];
-      res.data.data.forEach((item,index)=>{
-        if(index < 3) this.infoList.push(item);
+    const cors = "https://cors-anywhere.herokuapp.com/";
+    this.axios
+      .get(
+        cors +
+          "https://isports.sa.gov.tw/Api/Rest/V1/Activity.svc/GetActivityList?activityKind=1&paging=false"
+      )
+      .then((res) => {
+        this.infoList = [];
+        res.data.data.forEach((item, index) => {
+          if (index < 3) this.infoList.push(item);
+        });
       })
-    }).catch(err=> {
-      console.log(err);
-      this.warn_text = "資料加載失敗，非常抱歉😥";
-      this.fail = true;
-    });
+      .catch((err) => {
+        console.log(err);
+        this.warn_text = "資料加載失敗，非常抱歉😥";
+        this.fail = true;
+      });
     this.bg_tl = gsap.timeline();
     this.peopleGsap();
     // 判斷是否重新更新大小
     window.addEventListener("resize", this.resizeGsap);
 
     ScrollTrigger.matchMedia({
-      "(min-width: 1070px)": function(){
+      "(min-width: 1070px)": function() {
         let tl = gsap.timeline({
-          scrollTrigger:{
+          scrollTrigger: {
             trigger: ".banner_section",
             // toggleActions: "start pause reverse start",
             // markers: true,
@@ -214,61 +230,79 @@ export default {
             scrub: true,
             pin: true,
           },
-        })
-    
-        tl.to("#ball",{
+        });
+
+        tl.to("#ball", {
           y: 350,
           repeat: 3,
           yoyo: true,
         })
-        .to('#body',{
-          x: -10,
-          rotate: 5,
-          transformOrigin:"0% 50%",
-          repeat: 3,
-          yoyo: true,
-        }, 0)
-        .to('#floor_ball',{
-          scale: 0.5,
-          transformOrigin:"50% 50%",
-          repeat: 3,
-          yoyo: true,
-        },0)
-        .to("#head",{
-          x: 15,
-          y: 25,
-          scaleY: 0.5,
-          transformOrigin:"0% 50%",
-          repeat: 3,
-          yoyo: true,
-        },0)
-        .to("#floor_l",{
-          y: 25,
-          scale: 0.6,
-          transformOrigin:"50% 50%",
-          repeat: 3,
-          yoyo: true,
-        },0)
-        .to("#floor_r",{
-          x: -15,
-          y: 40,
-          transformOrigin:"50% 50%",
-          repeat: 3,
-          yoyo: true,
-        },0)
-      }
-    })
+          .to(
+            "#body",
+            {
+              x: -10,
+              rotate: 5,
+              transformOrigin: "0% 50%",
+              repeat: 3,
+              yoyo: true,
+            },
+            0
+          )
+          .to(
+            "#floor_ball",
+            {
+              scale: 0.5,
+              transformOrigin: "50% 50%",
+              repeat: 3,
+              yoyo: true,
+            },
+            0
+          )
+          .to(
+            "#head",
+            {
+              x: 15,
+              y: 25,
+              scaleY: 0.5,
+              transformOrigin: "0% 50%",
+              repeat: 3,
+              yoyo: true,
+            },
+            0
+          )
+          .to(
+            "#floor_l",
+            {
+              y: 25,
+              scale: 0.6,
+              transformOrigin: "50% 50%",
+              repeat: 3,
+              yoyo: true,
+            },
+            0
+          )
+          .to(
+            "#floor_r",
+            {
+              x: -15,
+              y: 40,
+              transformOrigin: "50% 50%",
+              repeat: 3,
+              yoyo: true,
+            },
+            0
+          );
+      },
+    });
   },
-  created(){
-    document.title = "籃球 - 全民來相揪"
+  created() {
+    document.title = "籃球 - 全民來相揪";
   },
-  destroyed(){
-        window.removeEventListener('resize', this.resizeGsap)
-        ScrollTrigger.clearMatchMedia("(min-width: 1070px)") ;
-    }
+  destroyed() {
+    window.removeEventListener("resize", this.resizeGsap);
+    ScrollTrigger.clearMatchMedia("(min-width: 1070px)");
+  },
 };
-
-
 </script>
 
 <template src="./template.html"></template>

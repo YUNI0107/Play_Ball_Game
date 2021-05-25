@@ -12,7 +12,7 @@ export default new Vuex.Store({
     ham_open: false,
     login_color: '',
     // 是否登入判斷
-    login_state: true,
+    login_state: false,
     all_misson: [{
         misson_name: "Sample：研究生學弟妹團約學弟妹團約",
         ball: "volley",

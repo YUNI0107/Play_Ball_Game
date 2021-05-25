@@ -9,6 +9,7 @@
     justify-content: center;
     z-index: 200;
     padding: 40px 15px;
+    padding-bottom: 80px;
 }
 
 .open_part{
@@ -293,6 +294,7 @@
     }
 
     .left .ball_type{
+        max-width: 80px;
         width: 45%;
     }
 

@@ -158,9 +158,10 @@ export default {
     this.$store.commit("loginColorChange", "white");
 
     // 抓精選新聞 NewsAPI
+     // https://newsapi.org/v2/everything?q="要搜尋的球類"&language=zh&apiKey="我的APIKEY"
     this.axios
       .get(
-        'https://newsapi.org/v2/everything?q="球類"&language=zh&apiKey=0cfedf3ca1f2486bbbc0c57d7e9639cf'
+        'football.json'
       )
       .then((res) => {
         res.data.articles.forEach((item, index) => {
