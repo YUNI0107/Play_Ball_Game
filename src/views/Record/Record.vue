@@ -23,7 +23,7 @@ export default {
       days: 1,
       weather: "",
       weather_type: 1,
-      weather_short: "讀取天氣",
+      weather_short: "讀取中",
       points: 0,
       add_open: false,
       edit_open: false,
@@ -88,7 +88,7 @@ export default {
   watch: {
     city() {
       //  是初始頁面，觀察city的值更新了沒
-      if (this.city !== "您的位置") {
+      if (this.city !== "位置") {
         this.getWeather();
       }
     },
@@ -358,7 +358,7 @@ export default {
     this.yellowWidth = (done_misson_num / 20) * 100;
 
     //  如果不是初始頁面
-    if (this.city !== "您的位置") {
+    if (this.city !== "位置") {
       this.getWeather();
     }
 

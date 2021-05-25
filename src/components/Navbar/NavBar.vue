@@ -29,6 +29,7 @@ export default {
         this.$store.commit("hamOpenChange", true);
         this.$store.commit("whiteBackChange", true);
         show_back.classList.add("open");
+        this.$refs.nav_right.classList.remove("none");
         logo.style.opacity = 1;
         logo.style.transition = ".5s";
       } else {
@@ -47,6 +48,9 @@ export default {
             ham.classList.remove("ham_change");
           }, 500);
         }
+        setTimeout(() => {
+          show_back.classList.add("none");
+        }, 500);
         show_back.classList.remove("open");
       }
     },
@@ -57,6 +61,9 @@ export default {
       this.$store.commit("hamOpenChange", false);
       show_back.classList.remove("open");
       this.logoShow();
+      setTimeout(() => {
+        show_back.classList.add("none");
+      }, 500);
     },
     logoShow() {
       let logo = document.querySelector(".logo");

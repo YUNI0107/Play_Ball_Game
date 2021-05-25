@@ -10,6 +10,7 @@
 <script>
 import smoothscroll from 'smoothscroll-polyfill';
 import NavBar from './components/Navbar/NavBar'
+
 export default {
   components: {
     NavBar,
@@ -46,11 +47,14 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;400;700&display=swap');
+
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 
 #app{

@@ -110,7 +110,7 @@ export default new Vuex.Store({
         done: false,
       },
     ],
-    city: "您的位置",
+    city: "位置",
     pos: null,
   },
   mutations: {

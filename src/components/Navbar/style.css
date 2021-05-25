@@ -243,12 +243,20 @@ li:nth-child(6)::before {
         z-index: 1;
         clip-path: circle(100px at -50% -50%);
         -webkit-clip-path: circle(100px at -50% -50%);
-        transition: all 1s ease-out;
+        transition: clip-path 1s ease-out;
+        overflow: hidden;
+        display: block;
     }
+
+    .nav_right.none{
+        transform: translateX(-100%);
+    }
+
 
     .nav_right.open {
         clip-path: circle(150% at 10% 10%);
         -webkit-clip-path: circle(150% at 10% 10%);
+        transform: translateX(0%);
     }
 
     .nav_right ul {
