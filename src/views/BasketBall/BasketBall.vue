@@ -170,7 +170,6 @@ export default {
         'basketball.json'
       )
       .then((res) => {
-        console.log( JSON.stringify(res.data));
         res.data.articles.forEach((item, index) => {
           if (index < 6) this.newsList.push(item);
         });
